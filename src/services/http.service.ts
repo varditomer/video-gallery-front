@@ -1,9 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from "axios";
 
 // Environment check for development/production
-const BASE_URL = process.env.NODE_ENV === 'production'
-  ? '/api/' // In production, served from the same backend
-  : 'http://localhost:3000/api/'; // In development, call the local backend
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "/api/" // In production, served from the same backend
+    : "http://localhost:3000/api/"; // In development, call the local backend
+
 
 // Create Axios instance
 const axiosInstance = axios.create({
@@ -13,22 +15,22 @@ const axiosInstance = axios.create({
 
 export const httpService = {
   get<T>(endpoint: string, params?: any) {
-    return request<T>(endpoint, 'GET', null, params);
+    return request<T>(endpoint, "GET", null, params);
   },
   post<T>(endpoint: string, data: any) {
-    return request<T>(endpoint, 'POST', data);
+    return request<T>(endpoint, "POST", data);
   },
   put<T>(endpoint: string, data: any) {
-    return request<T>(endpoint, 'PUT', data);
+    return request<T>(endpoint, "PUT", data);
   },
   delete<T>(endpoint: string) {
-    return request<T>(endpoint, 'DELETE');
+    return request<T>(endpoint, "DELETE");
   },
 };
 
 async function request<T>(
   endpoint: string,
-  method: AxiosRequestConfig['method'],
+  method: AxiosRequestConfig["method"],
   data?: any,
   params?: any
 ): Promise<T> {
@@ -49,8 +51,8 @@ async function request<T>(
       }
       throw err;
     } else {
-      console.error('Unexpected error', err);
-      throw new Error('An unexpected error occurred');
+      console.error("Unexpected error", err);
+      throw new Error("An unexpected error occurred");
     }
   }
 }
