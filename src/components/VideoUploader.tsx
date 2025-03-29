@@ -22,8 +22,8 @@ export const VideoUploader: React.FC = () => {
       console.log("Upload successful:", response);
       setUploadedUrl(response.url);
     } catch (error) {
-      console.error("Error uploading video:", error);
-      alert("Upload failed. Please try again.");
+      console.error("Full error:", error);
+      alert(`Upload failed: ${JSON.stringify(error, Object.getOwnPropertyNames(error))}`);
     } finally {
       setIsUploading(false);
     }
